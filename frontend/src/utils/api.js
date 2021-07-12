@@ -28,6 +28,7 @@ class Api {
     getProfile(data) {
         return this._makeRequest("users/me", {
             method: 'PATCH',
+            credentials: 'include',
             headers: this._headers,
 
             body: JSON.stringify({
@@ -41,6 +42,7 @@ class Api {
     getNewCard(data) {
         return this._makeRequest("cards", {
             method: 'POST',
+            credentials: 'include', 
             headers: this._headers,
             body: JSON.stringify({
                 name: data.name,
@@ -52,6 +54,7 @@ class Api {
     deleteCard(id) {
         return this._makeRequest(`cards/${id}`, {
             method: 'DELETE',
+            credentials: 'include', 
             headers: this._headers,
         })
     }
@@ -59,6 +62,7 @@ class Api {
     changeLikeCardStatus(id, isLiked) {
         return this._makeRequest(`cards/likes/${id}`, {
             method: isLiked ? 'PUT' : 'DELETE',
+            credentials: 'include', 
             headers: this._headers,
         })
     }
@@ -80,6 +84,7 @@ class Api {
     putAvatar(data) {
         return this._makeRequest("users/me/avatar", {
             method: 'PATCH',
+            credentials: 'include', 
             headers: this._headers,
             body: JSON.stringify({
                 avatar: data.avatar,
@@ -91,7 +96,6 @@ class Api {
 const api = new Api({
     baseUrl: 'https://api.voviii1984.student.nomoredomains.monster/',
     headers: {
-        authorization: `Bearer ${localStorage.getItem('token')}`,
         'Content-Type': 'application/json'
     }
 })
