@@ -1,0 +1,20 @@
+.header__text-email {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin-top: 6px;
+}
+
+@media screen and (max-width: 917px){
+    .header__text-email {
+        margin-left: 290px;
+    }
+}
+
+@media screen and (max-width: 618px) {
+    .header__text-email {
+        margin-left: 40px;
+    }
+}

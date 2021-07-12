@@ -1,0 +1,15 @@
+.element__close {
+  background: url(../../../images/closeelement.png) no-repeat;
+  display: none;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 19px;
+  right: 14px;
+  border: 0;
+  cursor: pointer;
+}
+
+.element__close:hover {
+  opacity: 0.6;
+}

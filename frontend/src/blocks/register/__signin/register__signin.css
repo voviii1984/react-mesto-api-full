@@ -1,0 +1,10 @@
+.register__signin {
+    display: flex;
+    color: #FFFFFF;
+    align-items: center;
+    justify-content: center;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+}

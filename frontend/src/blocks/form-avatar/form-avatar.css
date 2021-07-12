@@ -1,0 +1,14 @@
+.form-avatar {
+    display: flex;
+    flex-direction: column;
+    margin: 21px auto 37px auto;
+    max-width: 358px;
+    border: 0;
+  }
+  
+  @media screen and (max-width: 618px) {
+    .form-avatar {
+      max-width: 238px;
+      margin: 44px auto 25px auto;
+    }
+  }
