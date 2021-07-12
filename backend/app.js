@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
+const rateLimit = require('express-rate-limit');
+const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const userRoutes = require('./routes/user');
@@ -17,13 +19,14 @@ const internalServerError = require('./errors/internal-server-err');
 const { PORT = 3000 } = process.env;
 const app = express();
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', `http://localhost:${PORT}`);
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-
-  next();
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
 });
+
+app.use(limiter);
+
+app.use(cors());
 
 app.use(helmet());
 // parse application/x-www-form-urlencoded

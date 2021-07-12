@@ -6,6 +6,7 @@ class Api {
 
     _makeRequest(Url, param = {
         headers: this._headers,
+        credentials: 'include',
     }) {
         return fetch(`${this._baseUrl}${Url}`, param)
             .then(res => {
@@ -28,8 +29,8 @@ class Api {
     getProfile(data) {
         return this._makeRequest("users/me", {
             method: 'PATCH',
-            credentials: 'include',
             headers: this._headers,
+            credentials: 'include',
 
             body: JSON.stringify({
                 name: data.name,
@@ -42,8 +43,8 @@ class Api {
     getNewCard(data) {
         return this._makeRequest("cards", {
             method: 'POST',
-            credentials: 'include', 
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 name: data.name,
                 link: data.link
@@ -54,16 +55,16 @@ class Api {
     deleteCard(id) {
         return this._makeRequest(`cards/${id}`, {
             method: 'DELETE',
-            credentials: 'include', 
             headers: this._headers,
+            credentials: 'include',
         })
     }
 
     changeLikeCardStatus(id, isLiked) {
         return this._makeRequest(`cards/likes/${id}`, {
             method: isLiked ? 'PUT' : 'DELETE',
-            credentials: 'include', 
             headers: this._headers,
+            credentials: 'include',
         })
     }
 
@@ -84,8 +85,8 @@ class Api {
     putAvatar(data) {
         return this._makeRequest("users/me/avatar", {
             method: 'PATCH',
-            credentials: 'include', 
             headers: this._headers,
+            credentials: 'include',
             body: JSON.stringify({
                 avatar: data.avatar,
             })
