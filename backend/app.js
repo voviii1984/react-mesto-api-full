@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
-const cors = require('cors');
+//const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const userRoutes = require('./routes/user');
@@ -27,10 +27,21 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(helmet());
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true,
-}));
+const allowedCors = [
+  'https://voviii1984.student.nomoredomains.club',
+  'http://voviii1984.student.nomoredomains.club',
+  'http://localhost:3000',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  }
+  next();
+});
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
