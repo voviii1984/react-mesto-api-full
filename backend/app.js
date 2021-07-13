@@ -27,7 +27,10 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(helmet());
-app.use(cors());
+app.use(app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
