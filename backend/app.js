@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
-//const cors = require('cors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const userRoutes = require('./routes/user');
