@@ -1,8 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
@@ -26,8 +27,16 @@ const limiter = rateLimit({
 const allowedCors = [
   'https://voviii1984.student.nomoredomains.club',
   'http://voviii1984.student.nomoredomains.club',
-  'http://localhost:3000',
 ];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedCors.indexOf(origin) !== -1) {
+      callback(null, true);
+    }
+  },
+  credentials: true,
+};
 
 app.use(helmet());
 // parse application/json
@@ -46,15 +55,7 @@ app.use(cookieParser());
 app.use(requestLogger); // подключаем логгер запросов
 app.use(limiter);
 
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
-  }
-  next();
-});
+app.use(cors(corsOptions));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
