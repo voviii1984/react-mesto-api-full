@@ -19,15 +19,15 @@ class Api {
     }
 
     userInfo() {
-        return this._makeRequest("/users/me")
+        return this._makeRequest('users/me')
     }
 
     getInitialCards() {
-        return this._makeRequest("/cards")
+        return this._makeRequest('cards')
     }
 
     getProfile(data) {
-        return this._makeRequest("/users/me", {
+        return this._makeRequest('users/me', {
             method: 'PATCH',
             headers: this._headers,
             credentials: 'include',
@@ -41,7 +41,7 @@ class Api {
     }
 
     getNewCard(data) {
-        return this._makeRequest("/cards", {
+        return this._makeRequest('cards', {
             method: 'POST',
             headers: this._headers,
             credentials: 'include',
@@ -53,7 +53,7 @@ class Api {
     }
 
     deleteCard(id) {
-        return this._makeRequest(`/cards/${id}`, {
+        return this._makeRequest(`cards/${id}`, {
             method: 'DELETE',
             headers: this._headers,
             credentials: 'include',
@@ -61,7 +61,7 @@ class Api {
     }
 
     changeLikeCardStatus(id, isLiked) {
-        return this._makeRequest(`/cards/likes/${id}`, {
+        return this._makeRequest(`cards/likes/${id}`, {
             method: isLiked ? 'PUT' : 'DELETE',
             headers: this._headers,
             credentials: 'include',
@@ -83,7 +83,7 @@ class Api {
     }*/
 
     putAvatar(data) {
-        return this._makeRequest("/users/me/avatar", {
+        return this._makeRequest('users/me/avatar', {
             method: 'PATCH',
             headers: this._headers,
             credentials: 'include',
@@ -95,7 +95,7 @@ class Api {
 }
 
 const api = new Api({
-    baseUrl: 'https://api.voviii1984.student.nomoredomains.monster',
+    baseUrl: 'https://api.voviii1984.student.nomoredomains.monster/',
     headers: {
         'Content-Type': 'application/json'
     }

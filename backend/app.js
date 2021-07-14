@@ -84,8 +84,8 @@ app.post('/signup',
 
 app.use(auth);
 
-app.use(userRoutes);
-app.use(cardRoutes);
+app.use('/', userRoutes);
+app.use('/', cardRoutes);
 
 app.use(errorLogger); // подключаем логгер ошибок
 
