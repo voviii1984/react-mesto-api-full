@@ -7,13 +7,13 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import DeleteCardPopup from './DeleteCardPopup'
-import api from '../utils/api.js';
+import api from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Register from './Register';
 import Login from './Login'
 import ProtectedRoute from './ProtectedRoute';
-import * as authMesto from '../utils/authMesto.js';
+import * as authMesto from '../utils/authMesto';
 import InfoTooltip from './InfoTooltip';
 
 function App() {
