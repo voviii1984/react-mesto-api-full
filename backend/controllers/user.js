@@ -98,6 +98,8 @@ module.exports = {
               NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
               { expiresIn: '7d' },
             );
+            console.log('token');
+            console.log(token);
             return res
               .cookie('jwt', token, {
                 maxAge: 3600000 * 24 * 7,

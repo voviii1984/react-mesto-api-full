@@ -18,7 +18,8 @@ module.exports = (req, res, next) => {
   } catch (err) {
     throw new UnauthorizedError('Необходима авторизация.');
   }
-
+  console.log('token');
+  console.log(token);
   req.user = payload; // записываем пейлоуд в объект запроса
 
   return next(); // пропускаем запрос дальше
