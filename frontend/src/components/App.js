@@ -218,7 +218,7 @@ function App() {
 
         <Switch>
           <ProtectedRoute
-            exact path='/'
+            exact path="/"
             isLoggedIn={isLoggedIn}
             component={Main}
             onEditAvatar={handleEditAvatarClick}
@@ -235,12 +235,12 @@ function App() {
             <Register onRegister={onRegister} />
           </Route>
 
-          <Route path='/signin'>
+          <Route path="/signin">
             <Login onLogin={onLogin} />
           </Route>
 
           <Route>
-            {isLoggedIn ? <Redirect to='/' /> : <Redirect to='/signin' />}
+            {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
 
           <Footer />
