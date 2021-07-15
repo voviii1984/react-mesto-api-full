@@ -7,7 +7,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 import ImagePopup from './ImagePopup';
 import DeleteCardPopup from './DeleteCardPopup'
-import api from '../utils/api';
+import { api } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 import Register from './Register';
