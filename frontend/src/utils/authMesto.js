@@ -1,4 +1,4 @@
-import {BASE_URL} from '../components/constant';
+import {BASE_URL} from '../components/constant.js';
 
 const checkResponse = (response) => {
   return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));

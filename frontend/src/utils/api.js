@@ -1,4 +1,4 @@
-import {options} from '../components/constant';
+import {options} from '../components/constant.js';
 
 class Api {
     constructor(options) {
