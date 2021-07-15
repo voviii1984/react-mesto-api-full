@@ -1,3 +1,5 @@
+import {options} from '../components/constant';
+
 class Api {
     constructor(options) {
         this._baseUrl = options.baseUrl;
@@ -94,12 +96,4 @@ class Api {
     }
 }
 
-const api = new Api({
-    baseUrl: 'https://api.voviii1984.student.nomoredomains.monster',
-    headers: {
-        Accept: "application/json",
-        'Content-Type': 'application/json'
-    }
-})
-
-export default api;
+export const api = new Api(options);

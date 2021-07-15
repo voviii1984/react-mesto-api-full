@@ -1,11 +1,11 @@
-export const BASE_URL = 'https://api.voviii1984.student.nomoredomains.monster';
+import {BASE_URL} from '../components/constant';
 
 const checkResponse = (response) => {
   return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));
 };
 
 const headers = {
-  'Accept': 'application/json',
+  Accept: 'application/json',
   'Content-Type': 'application/json',
 };
 
