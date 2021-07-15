@@ -1,0 +1,28 @@
+.form-delete__submit {
+    background-color: #000000;
+    border-radius: 2px;
+    min-height: 50px;
+    min-width: 358px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    margin: 21px auto 37px auto;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+  }
+  
+  .form-delete__submit:hover {
+    opacity: 0.6;
+  }
+  
+  @media screen and (max-width: 618px) {
+    .form-delete__submit {
+      font-size: 14px;
+      line-height: 17px;
+      min-height: 46px;
+      min-width: 238px;
+    }
+  }
