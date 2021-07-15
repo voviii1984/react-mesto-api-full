@@ -9,22 +9,22 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-export const register = ({ email, password }) => {
+export const register = ({ password, email }) => {
   return fetch(`${BASE_URL}/signup`, {
     headers,
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ password, email }),
   })
     .then((res) => checkResponse(res));
 };
 
-export const authorize = ({ email, password }) => {
+export const authorize = ({ password, email }) => {
   return fetch(`${BASE_URL}/signin`, {
     headers,
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ email, password }),
+    body: JSON.stringify({ password, email }),
   })
     .then((res) => checkResponse(res));
 };
@@ -33,6 +33,5 @@ export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     credentials: 'include',
-  })
-    .then((res) => checkResponse(res));
+  }).then((res) => checkResponse(res));
 };
