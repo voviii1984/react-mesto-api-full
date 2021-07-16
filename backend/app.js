@@ -25,20 +25,17 @@ const limiter = rateLimit({
 });
 
 const allowedCors = [
-  'http://localhost:3000',
   'https://voviii1984.student.nomoredomains.club',
   'http://voviii1984.student.nomoredomains.club',
 ];
 
 const corsOptions = {
-  credentials: true,
   origin: (origin, callback) => {
     if (allowedCors.indexOf(origin) !== -1) {
       callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
     }
   },
+  credentials: true,
 };
 
 app.use(helmet());
