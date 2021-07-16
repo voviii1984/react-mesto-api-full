@@ -6,7 +6,7 @@ const ForbiddenError = require('../errors/forbidden-err');
 module.exports = {
   findCards(req, res, next) {
     Card.find({})
-      .then((cards) => res.send({ cards }))
+      .then((cards) => res.send(cards.reverse()))
       .catch(next);
   },
   createCard(req, res, next) {
@@ -15,7 +15,7 @@ module.exports = {
     const { name, link } = req.body;
 
     Card.create({ name, link, owner })
-      .then((card) => res.send({ card }))
+      .then((card) => res.send(card))
       .catch((err) => {
         if (err.name === 'ValidationError') {
           next(new BadRequestError('Переданы некорректные данные при создании карточки'));
@@ -26,12 +26,12 @@ module.exports = {
   likeCard(req, res, next) {
     Card.findByIdAndUpdate(req.params.cardId,
       { $addToSet: { likes: req.user._id } }, // добавить _id в массив, если его там нет
-      { new: true })
+      { new: true, runValidators: true })
       .then((card) => {
         if (!card) {
           throw new NotFoundError('Переданы некорректные данные для постановки лайка.');
         }
-        res.send({ card });
+        res.send(card);
       })
       .catch((err) => {
         if (err.name === 'CastError') {
@@ -43,12 +43,12 @@ module.exports = {
   dislikeCard(req, res, next) {
     Card.findByIdAndUpdate(req.params.cardId,
       { $pull: { likes: req.user._id } }, // убрать _id из массива
-      { new: true })
+      { new: true, runValidators: true })
       .then((card) => {
         if (!card) {
           throw new NotFoundError('Переданы некорректные данные для снятии лайка.');
         }
-        res.send({ card });
+        res.send(card);
       })
       .catch((err) => {
         if (err.name === 'CastError') {
@@ -68,7 +68,7 @@ module.exports = {
         } else {
           Card
             .findByIdAndRemove(req.params.cardId)
-            .then(() => res.send({ card }));
+            .then(() => res.send(card));
         }
       })
       .catch((err) => {

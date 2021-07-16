@@ -42,7 +42,7 @@ app.use(helmet());
 // parse application/json
 app.use(bodyParser.json());
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
@@ -86,10 +86,9 @@ app.use(auth);
 
 app.use(userRoutes);
 app.use(cardRoutes);
+app.use(badRouter);
 
 app.use(errorLogger); // подключаем логгер ошибок
-
-app.use(badRouter);
 
 app.use(errors()); // обработчик ошибок celebrate
 app.use(internalServerError);
