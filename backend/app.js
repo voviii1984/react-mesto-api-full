@@ -25,6 +25,7 @@ const limiter = rateLimit({
 });
 
 const allowedCors = [
+  'http://localhost:3000',
   'https://voviii1984.student.nomoredomains.club',
   'http://voviii1984.student.nomoredomains.club',
 ];
@@ -33,9 +34,14 @@ const corsOptions = {
   origin: (origin, callback) => {
     if (allowedCors.indexOf(origin) !== -1) {
       callback(null, true);
+    } else {
+      callback(null, false);
     }
   },
-  credentials: true,
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  credentials: true, // Credentials are cookies, authorization headers or TLS client certificates
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept'],
 };
 
 app.use(helmet());
