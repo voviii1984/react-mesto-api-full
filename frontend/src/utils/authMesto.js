@@ -9,22 +9,22 @@ const headers = {
   'Content-Type': 'application/json',
 };
 
-export const register = ({ password, email }) => {
+export const register = ({ email, password }) => {
   return fetch(`${BASE_URL}/signup`, {
     headers,
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ password, email }),
+    body: JSON.stringify({ email, password }),
   })
     .then((res) => checkResponse(res));
 };
 
-export const authorize = ({ password, email }) => {
+export const authorize = ({ email, password }) => {
   return fetch(`${BASE_URL}/signin`, {
     headers,
     method: 'POST',
     credentials: 'include',
-    body: JSON.stringify({ password, email }),
+    body: JSON.stringify({ email, password }),
   })
     .then((res) => checkResponse(res));
 };
