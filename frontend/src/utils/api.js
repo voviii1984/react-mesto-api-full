@@ -63,7 +63,7 @@ class Api {
     }
 
     changeLikeCardStatus(id, isLiked) {
-        return this._makeRequest(`/cards/likes/${id}`, {
+        return this._makeRequest(`/cards/${id}/likes`, {
             method: isLiked ? 'PUT' : 'DELETE',
             headers: this._headers,
             credentials: 'include',

@@ -1,4 +1,4 @@
-import { BASE_URL } from '../components/constant';
+export const BASE_URL = 'https://api.voviii1984.student.nomoredomains.monster';
 
 const checkResponse = (response) => {
   return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));
@@ -33,5 +33,6 @@ export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     credentials: 'include',
+    headers,
   }).then((res) => checkResponse(res));
 };
