@@ -33,6 +33,5 @@ export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',
     credentials: 'include',
-    headers,
   }).then((res) => checkResponse(res));
 };

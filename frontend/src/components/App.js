@@ -216,6 +216,14 @@ function App() {
         />
 
         <Switch>
+          <Route path='/signup'>
+            <Register onRegister={onRegister} />
+          </Route>
+
+          <Route path="/signin">
+            <Login onLogin={onLogin} />
+          </Route>
+          
           <ProtectedRoute
             exact path="/"
             isLoggedIn={isLoggedIn}
@@ -229,14 +237,6 @@ function App() {
             onCardDelete={setCardDelete}
             cardDeletePopup={handleDeleteCardClick}
           />
-
-          <Route path='/signup'>
-            <Register onRegister={onRegister} />
-          </Route>
-
-          <Route path="/signin">
-            <Login onLogin={onLogin} />
-          </Route>
 
           <Route>
             {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
