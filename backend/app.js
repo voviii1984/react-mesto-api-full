@@ -44,6 +44,8 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept'],
 };
 
+app.use(cors(corsOptions));
+
 app.use(helmet());
 // parse application/json
 app.use(bodyParser.json());
@@ -58,10 +60,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(cookieParser());
-app.use(requestLogger); // подключаем логгер запросов
+
 app.use(limiter);
 
-app.use(cors(corsOptions));
+app.use(requestLogger); // подключаем логгер запросов
 
 app.get('/crash-test', () => {
   setTimeout(() => {
