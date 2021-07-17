@@ -5,7 +5,7 @@ const checkResponse = (response) => {
 };
 
 const headers = {
-  Accept: 'application/json',
+  'Accept': 'application/json',
   'Content-Type': 'application/json',
 };
 
