@@ -31,6 +31,7 @@ export const authorize = ({ email, password }) => {
 
 export const getContent = () => {
   return fetch(`${BASE_URL}/users/me`, {
+    headers,
     method: 'GET',
     credentials: 'include',
   }).then((res) => checkResponse(res));
