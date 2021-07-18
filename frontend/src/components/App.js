@@ -141,13 +141,8 @@ function App() {
   }
 
   const tokenCheck = () => {
-    const jwt = localStorage.getItem('token');
-    if (!jwt) {
-      return;
-    }
-
     authMesto
-      .getContent(jwt)
+      .getContent()
       .then(({ email }) => {
         setUserInfo({ email });
         setIsLoggedIn(true);
