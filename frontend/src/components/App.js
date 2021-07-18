@@ -143,10 +143,11 @@ function App() {
   const tokenCheck = () => {
     authMesto
       .getContent()
-      .then((res) => {
-        setUserInfo(res.users.email);
+      .then(({ email }) => {
+        console.log({email});
+        setUserInfo({ email });
         setIsLoggedIn(true);
-    //console.log(email);
+    
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
