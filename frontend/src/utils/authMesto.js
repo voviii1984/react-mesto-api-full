@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.voviii1984.student.nomoredomains.monster';
+import { options } from '../components/constant';
+export const BASE_URL = options.baseUrl;
 
 const checkResponse = (response) => {
   return response.ok ? response.json() : Promise.reject(new Error(`Ошибка ${response.status}: ${response.statusText}`));
