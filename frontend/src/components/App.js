@@ -143,8 +143,8 @@ function App() {
   const tokenCheck = () => {
     authMesto
       .getContent()
-      .then(({ user }) => {
-        setUserInfo({ user });
+      .then(({ email }) => {
+        setUserInfo({ email });
         setIsLoggedIn(true);
     //console.log(email);
       })
