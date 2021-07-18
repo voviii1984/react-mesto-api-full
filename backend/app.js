@@ -3,7 +3,7 @@ const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-//const cors = require('cors');
+
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
@@ -48,8 +48,6 @@ app.use((req, res, next) => {
     } else next();
   } else next();
 });
-
-//app.use(cors(corsOptions));
 
 app.use(helmet());
 // parse application/json
