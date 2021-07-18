@@ -148,7 +148,7 @@ function App() {
 
     authMesto
       .getContent(jwt)
-      .then(({ data: { email } }) => {
+      .then(({ email }) => {
         setUserInfo({ email });
         setIsLoggedIn(true);
       })
