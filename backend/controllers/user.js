@@ -10,7 +10,7 @@ const ConflictError = require('../errors/conflict-err');
 module.exports = {
   findUsers(req, res, next) {
     User.find({})
-      .then((users) => res.send({ data: users }))
+      .then((users) => res.send({ users }))
       .catch(next);
   },
   getUserProfile(req, res, next) {
@@ -19,7 +19,7 @@ module.exports = {
         if (!user) {
           throw new NotFoundError('Пользователь с указанным _id не найден.');
         }
-        res.send(user);
+        res.send({ user });
       })
       .catch((err) => {
         if (err.name === 'ValidationError') {
@@ -31,10 +31,10 @@ module.exports = {
   findOneUser(req, res, next) {
     User.findById(req.params.userId)
       .then((user) => {
-        if (user) {
-          return res.send(user);
+        if (!user) {
+          throw new NotFoundError('Пользователь с указанным _id не найден.');
         }
-        throw new NotFoundError('Пользователь с указанным _id не найден.');
+        return res.send({ user });
       })
       .catch((err) => {
         if (err.name === 'CastError') {
@@ -117,7 +117,7 @@ module.exports = {
         if (!user) {
           throw new NotFoundError('Пользователь с указанным _id не найден.');
         }
-        res.send(user);
+        return res.send({ user });
       })
       .catch((err) => {
         if (err.name === 'CastError') {
@@ -134,7 +134,7 @@ module.exports = {
         if (!user) {
           throw new NotFoundError('Пользователь с указанным _id не найден.');
         }
-        res.send(user);
+        return res.send({ user });
       })
       .catch((err) => {
         if (err.name === 'ValidationError') {
