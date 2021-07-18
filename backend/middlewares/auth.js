@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
     );
   } catch (err) {
-    return next(new UnauthorizedError('Необходима авторизация.'));
+    throw new UnauthorizedError('Необходима авторизация.');
   }
   req.user = payload; // записываем пейлоуд в объект запроса
 
