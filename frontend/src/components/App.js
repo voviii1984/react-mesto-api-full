@@ -146,7 +146,7 @@ function App() {
       .then(({ user }) => {
         setUserInfo({ user });
         setIsLoggedIn(true);
-        console.log(email);
+    //console.log(email);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
