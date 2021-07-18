@@ -3,7 +3,7 @@ const express = require('express');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const cors = require('cors');
+//const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 const rateLimit = require('express-rate-limit');
@@ -27,23 +27,29 @@ const limiter = rateLimit({
 const allowedCors = [
   'https://voviii1984.student.nomoredomains.club',
   'http://voviii1984.student.nomoredomains.club',
+  'http://localhost:3000',
 ];
 
-const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedCors.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(null, false);
-    }
-  },
-  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH'],
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-  credentials: true, // Credentials are cookies, authorization headers or TLS client certificates
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept'],
-};
+app.use((req, res, next) => {
+  const { origin } = req.headers; // Сохраняем источник запроса в переменную origin
+  // проверяем, что источник запроса есть среди разрешённых
+  if (allowedCors.includes(origin)) {
+    // устанавливаем заголовок, который разрешает браузеру запросы с этого источника
+    res.header('Access-Control-Allow-Origin', origin);
+    res.header('Access-Control-Allow-Credentials', true);
 
-app.use(cors(corsOptions));
+    const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
+
+    if (req.method === 'OPTIONS') {
+      // разрешаем кросс-доменные запросы любых типов (по умолчанию)
+      res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
+      res.header('Access-Control-Allow-Headers', 'Origin, Content-Type');
+      res.status(204).send();
+    } else next();
+  } else next();
+});
+
+//app.use(cors(corsOptions));
 
 app.use(helmet());
 // parse application/json
