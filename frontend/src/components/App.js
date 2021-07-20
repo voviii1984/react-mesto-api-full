@@ -141,12 +141,9 @@ function App() {
   }
 
   const tokenCheck = () => {
-    const jwt = localStorage.getItem('token');
-    if (!jwt) {
-      return;
-    }
+    
     authMesto
-      .getContent(jwt)
+      .getContent()
       .then(({email}) => {
         //console.log(email);
         setUserInfo({email});
@@ -186,11 +183,11 @@ function App() {
   const onLogin = ({ email, password }) => {
     return authMesto
       .authorize({ email, password })
-      .then(( {token} ) => {
+      .then(( {email} ) => {
         setUserInfo({ email });
         setInfoTooltipDone(true);
         setIsLoggedIn(true);        
-        localStorage.setItem('token', token);
+        localStorage.setItem('token', email);
         history.push("/");
       })
       .catch((err) => {
