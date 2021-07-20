@@ -141,11 +141,15 @@ function App() {
   }
 
   const tokenCheck = () => {
+    const jwt = localStorage.getItem('token');
+    if (!jwt) {
+      return;
+    }
     authMesto
-      .getContent()
-      .then((res) => {
+      .getContent(jwt)
+      .then(({email}) => {
         //console.log(email);
-        setUserInfo(res.user.email);
+        setUserInfo({email});
         setIsLoggedIn(true);
     
       })
