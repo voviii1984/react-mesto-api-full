@@ -143,9 +143,9 @@ function App() {
   const tokenCheck = () => {
     authMesto
       .getContent()
-      .then(({ email }) => {
-        console.log(email);
-        setUserInfo({ email });
+      .then((res) => {
+        //console.log(email);
+        setUserInfo(res.user.email);
         setIsLoggedIn(true);
     
       })
@@ -182,7 +182,7 @@ function App() {
   const onLogin = ({ email, password }) => {
     return authMesto
       .authorize({ email, password })
-      .then(( token ) => {
+      .then(( {token} ) => {
         setUserInfo({ email });
         setInfoTooltipDone(true);
         setIsLoggedIn(true);        
