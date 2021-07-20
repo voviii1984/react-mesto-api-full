@@ -144,7 +144,7 @@ function App() {
     
     authMesto
       .getContent()
-      .then(({ email }) => {
+      .then(({ data: { email } }) => {
         console.log({email});
         setUserInfo({email});
         setIsLoggedIn(true);
