@@ -15,6 +15,7 @@ import Login from './Login'
 import ProtectedRoute from './ProtectedRoute';
 import * as authMesto from '../utils/authMesto';
 import InfoTooltip from './InfoTooltip';
+import user from '../../../backend/models/user';
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -144,9 +145,9 @@ function App() {
     
     authMesto
       .getContent()
-      .then(({ email }) => {
+      .then((user) => {
         //console.log({email});
-        setUserInfo({ email });
+        setUserInfo({ email: user.email });
         setIsLoggedIn(true);
     
       })
