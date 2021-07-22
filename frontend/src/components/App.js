@@ -180,9 +180,9 @@ function App() {
       })
   };
 
-  const onLogin = ({ email, password }) => {
+  const onLogin = (data) => {
     return authMesto
-      .authorize({ email, password })
+      .authorize(data)
       .then((res) => {
         setUserInfo(res.email);
         setInfoTooltipDone(true);
