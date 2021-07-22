@@ -146,7 +146,7 @@ function App() {
       .getContent()
       .then((res) => {
         //console.log({email});
-        setUserInfo(res.email);
+        setUserInfo(res);
         setIsLoggedIn(true);
     
       })
@@ -184,7 +184,7 @@ function App() {
     return authMesto
       .authorize(data)
       .then((res) => {
-        setUserInfo(res.email);
+        setUserInfo(res);
         setInfoTooltipDone(true);
         setIsLoggedIn(true);        
         //localStorage.setItem('token', token);
