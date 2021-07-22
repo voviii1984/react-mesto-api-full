@@ -183,8 +183,8 @@ function App() {
   const onLogin = (data) => {
     return authMesto
       .authorize(data)
-      .then((res) => {
-        setUserInfo(res.email);
+      .then(({ email }) => {
+        setUserInfo({ email });
         setInfoTooltipDone(true);
         setIsLoggedIn(true);        
         //localStorage.setItem('token', token);
