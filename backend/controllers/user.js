@@ -10,7 +10,7 @@ const ConflictError = require('../errors/conflict-err');
 module.exports = {
   findUsers(req, res, next) {
     User.find({})
-      .then((users) => res.send({ data: users }))
+      .then((users) => res.send({ users }))
       .catch(next);
   },
   getUserProfile(req, res, next) {

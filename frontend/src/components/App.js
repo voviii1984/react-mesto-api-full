@@ -144,7 +144,7 @@ function App() {
     
     authMesto
       .getContent()
-      .then(({ data: { email } }) => {
+      .then(({ email }) => {
         console.log({email});
         setUserInfo({email});
         setIsLoggedIn(true);
@@ -199,7 +199,7 @@ function App() {
   const onLogOut = () => {
     setInfoTooltipDone(false);
     setIsLoggedIn(false);    
-    localStorage.removeItem('token');
+    //localStorage.removeItem('token');
     
   };
 
