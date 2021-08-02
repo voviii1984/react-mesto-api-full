@@ -36,24 +36,48 @@ function App() {
   const [infoTooltipDone, setInfoTooltipDone] = useState(false);
 
   useEffect(() => {
-    api.userInfo()
+    if (isLoggedIn) {
+      api.userInfo()
       .then((res) => {
         setCurrentUser(res)
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
-  }, [])
+    }
+  }, [isLoggedIn])
 
   useEffect(() => {
-    api.getInitialCards()
+    if (isLoggedIn) {
+      api.getInitialCards()
       .then((res) => {
         setCards(res)
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
-  }, [])
+    }
+  }, [isLoggedIn])
+
+  // useEffect(() => {
+  //   api.userInfo()
+  //     .then((res) => {
+  //       setCurrentUser(res)
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Ошибка: ${err}`);
+  //     });
+  // }, [])
+
+  // useEffect(() => {
+  //   api.getInitialCards()
+  //     .then((res) => {
+  //       setCards(res)
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Ошибка: ${err}`);
+  //     });
+  // }, [])
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((like) => like === currentUser._id);
@@ -174,7 +198,7 @@ function App() {
       .then(() => {
         setInfoTooltipDone(true);
         setIsInfoTooltip(true);
-        setIsLoggedIn(true);
+        setIsLoggedIn(false);
         history.push('/');
       })
       .catch((err) => {
