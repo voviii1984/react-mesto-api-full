@@ -10,7 +10,7 @@ const ConflictError = require('../errors/conflict-err');
 module.exports = {
   findUsers(req, res, next) {
     User.find({})
-      .then((users) => res.send({ users }))
+      .then((users) => res.send({ data: users }))
       .catch(next);
   },
   getUserProfile(req, res, next) {
@@ -103,7 +103,6 @@ module.exports = {
                 maxAge: 3600000 * 24 * 7,
                 httpOnly: true,
                 sameSite: true,
-                domain: 'voviii1984.student.nomoredomains.club',
               })
               .send({ message: 'Вы успешно авторизованны!' });
           });

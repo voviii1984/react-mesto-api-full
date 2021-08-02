@@ -56,18 +56,20 @@ function App() {
   }, [])
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(like => like._id === currentUser._id);
+    const isLiked = card.likes.some((like) => like === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
-        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+        setCards((state) =>
+          state.map((c) =>
+            c._id === card._id ? newCard : c));
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
   }
 
-  function handleCardDelete(card) {
+  function handleCardDelete() {
 
     api.deleteCard(cardDelete._id)
       .then(() => {
@@ -142,14 +144,14 @@ function App() {
   }
 
   const tokenCheck = () => {
-    
+
     authMesto
       .getContent()
       .then(({ email }) => {
         //console.log({email});
         setUserInfo({ email });
         setIsLoggedIn(true);
-    
+
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -172,7 +174,7 @@ function App() {
       .then(() => {
         setInfoTooltipDone(true);
         setIsInfoTooltip(true);
-        setIsLoggedIn(true);      
+        setIsLoggedIn(true);
         history.push('/');
       })
       .catch((err) => {
@@ -187,7 +189,7 @@ function App() {
       .then((data) => {
         setUserInfo({ email });
         setInfoTooltipDone(true);
-        setIsLoggedIn(true);        
+        setIsLoggedIn(true);
         //localStorage.setItem('token', token);
         history.push("/");
       })
@@ -199,9 +201,9 @@ function App() {
 
   const onLogOut = () => {
     setInfoTooltipDone(false);
-    setIsLoggedIn(false);    
+    setIsLoggedIn(false);
     //localStorage.removeItem('jwt');
-    
+
   };
 
   return (
@@ -222,7 +224,7 @@ function App() {
           <Route path="/signin">
             <Login onLogin={onLogin} />
           </Route>
-          
+
           <ProtectedRoute
             exact path="/"
             isLoggedIn={isLoggedIn}
@@ -241,8 +243,9 @@ function App() {
             {isLoggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
 
-          <Footer />
         </Switch>
+
+        {isLoggedIn && <Footer />}
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}

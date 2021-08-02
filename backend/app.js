@@ -27,6 +27,7 @@ const limiter = rateLimit({
 const allowedCors = [
   'https://voviii1984.student.nomoredomains.club',
   'http://voviii1984.student.nomoredomains.club',
+  'http://localhost:3001',
 ];
 
 app.use((req, res, next) => {

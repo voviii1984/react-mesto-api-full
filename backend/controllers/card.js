@@ -11,8 +11,8 @@ module.exports = {
   },
   createCard(req, res, next) {
     // console.log(req.user._id);
-    const owner = req.user._id;
     const { name, link } = req.body;
+    const owner = req.user._id;
 
     Card.create({ name, link, owner })
       .then((card) => res.send(card))

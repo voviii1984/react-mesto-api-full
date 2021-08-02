@@ -5,12 +5,12 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext'
 function Card({ card, onCardClick, onCardLike, onCardDelete, cardDeletePopup }) {
     const currentUser = useContext(CurrentUserContext);
     
-    const isOwn = card.owner._id === currentUser._id;
+    const isOwn = card.owner === currentUser._id;
     const cardDeleteButtonClassName = 
         `element__close ${isOwn ? 'element__close_visible' : ''}`
     ;
 
-    const isLiked = card.likes.some((like) => like._id === currentUser._id);
+    const isLiked = card.likes.some((like) => like === currentUser._id);
     const cardLikeButtonClassName = 
         `element__vector ${isLiked ? 'element__vector_active' : ''}`
     ;
