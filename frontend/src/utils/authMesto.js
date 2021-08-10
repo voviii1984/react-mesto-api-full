@@ -36,7 +36,7 @@ export const getContent = () => {
     method: 'GET',
     credentials: 'include',
   }).then((res) => {
-    console.log('токен', res)
+    //console.log('токен', res)
     return checkResponse(res);    
   });
 };
